@@ -1,0 +1,43 @@
+# Source files (dist is published instead)
+src/
+
+# Test files
+tests/
+*.test.ts
+vitest.config.ts
+coverage/
+
+# Build configs
+tsconfig.json
+tsup.config.ts
+eslint.config.js
+
+# Scripts (not needed for runtime)
+scripts/
+
+# Development files
+.env
+.env.*
+!.env.example
+
+# Documentation (README is included by default)
+CLAUDE.md
+Tasks.md
+PRD.md
+CONTRIBUTING.md
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+node_modules/
+*.log
+.DS_Store
+
+# Embeddings cache (users generate their own)
+templates/embeddings.json

@@ -16,12 +16,14 @@
     "dev": "tsup --watch",
     "build": "tsup",
     "start": "node dist/index.js",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:coverage": "vitest --coverage",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit",
     "generate-embeddings": "tsx scripts/generate-embeddings.ts",
-    "validate-templates": "tsx scripts/validate-templates.ts"
+    "validate-templates": "tsx scripts/validate-templates.ts",
+    "prepublishOnly": "pnpm run build && pnpm run test && pnpm run typecheck"
   },
   "keywords": [
     "mcp",
@@ -29,10 +31,22 @@
     "templates",
     "cursor",
     "claude",
-    "code-generation"
+    "code-generation",
+    "nextjs",
+    "authentication",
+    "stripe",
+    "prisma"
   ],
   "author": "vibe-templates",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jooddang/sfvibe-templates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jooddang/sfvibe-templates/issues"
+  },
+  "homepage": "https://github.com/jooddang/sfvibe-templates#readme",
   "packageManager": "pnpm@10.28.1",
   "engines": {
     "node": ">=20.0.0"

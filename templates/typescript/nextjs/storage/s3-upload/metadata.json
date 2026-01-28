@@ -1,0 +1,38 @@
+{
+  "id": "typescript/nextjs/storage/s3-upload",
+  "name": "AWS S3 File Upload",
+  "description": "S3 file upload with presigned URLs. Secure client-side uploads directly to S3 without server proxy.",
+  "version": "1.0.0",
+  "category": "storage",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.700.0",
+    "@aws-sdk/s3-request-presigner": "^3.700.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.0"
+  },
+  "envVariables": [
+    { "name": "AWS_ACCESS_KEY_ID", "description": "AWS access key ID", "required": true, "example": "AKIA..." },
+    { "name": "AWS_SECRET_ACCESS_KEY", "description": "AWS secret access key", "required": true, "example": "your-secret-key" },
+    { "name": "AWS_REGION", "description": "AWS region", "required": true, "example": "us-east-1" },
+    { "name": "AWS_S3_BUCKET", "description": "S3 bucket name", "required": true, "example": "my-uploads-bucket" }
+  ],
+  "files": [
+    { "path": "src/lib/s3.ts", "description": "S3 client and utilities", "isRequired": true },
+    { "path": "src/app/api/upload/route.ts", "description": "Presigned URL API", "isRequired": true },
+    { "path": "src/components/file-upload.tsx", "description": "File upload component", "isRequired": false }
+  ],
+  "tags": ["storage", "s3", "aws", "upload", "files", "presigned-url"],
+  "usage": {
+    "installation": "pnpm add @aws-sdk/client-s3 @aws-sdk/s3-request-presigner uuid && pnpm add -D @types/uuid",
+    "configuration": "1. Create S3 bucket with proper CORS settings\n2. Add AWS credentials to .env\n3. Configure bucket policy for public read (optional)",
+    "example": "const { url } = await fetch('/api/upload', { method: 'POST', body: JSON.stringify({ filename, contentType }) }).then(r => r.json())\nawait fetch(url, { method: 'PUT', body: file })"
+  },
+  "relatedTemplates": [],
+  "author": "vibe-templates",
+  "createdAt": "2025-01-28",
+  "updatedAt": "2025-01-28"
+}

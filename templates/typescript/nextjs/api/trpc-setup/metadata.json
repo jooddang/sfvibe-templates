@@ -1,0 +1,36 @@
+{
+  "id": "typescript/nextjs/api/trpc-setup",
+  "name": "tRPC Setup",
+  "description": "Type-safe API with tRPC for Next.js App Router. End-to-end type safety from server to client.",
+  "version": "1.0.0",
+  "category": "api",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "@trpc/server": "^11.0.0",
+    "@trpc/client": "^11.0.0",
+    "@trpc/react-query": "^11.0.0",
+    "@tanstack/react-query": "^5.0.0",
+    "superjson": "^2.2.0"
+  },
+  "devDependencies": {},
+  "envVariables": [],
+  "files": [
+    { "path": "src/server/trpc.ts", "description": "tRPC initialization", "isRequired": true },
+    { "path": "src/server/routers/_app.ts", "description": "Root router", "isRequired": true },
+    { "path": "src/server/routers/user.ts", "description": "Example user router", "isRequired": false },
+    { "path": "src/app/api/trpc/[trpc]/route.ts", "description": "tRPC HTTP handler", "isRequired": true },
+    { "path": "src/lib/trpc.ts", "description": "tRPC client", "isRequired": true },
+    { "path": "src/providers/trpc-provider.tsx", "description": "React Query provider", "isRequired": true }
+  ],
+  "tags": ["api", "trpc", "type-safe", "rpc", "react-query", "tanstack"],
+  "usage": {
+    "installation": "pnpm add @trpc/server @trpc/client @trpc/react-query @tanstack/react-query superjson",
+    "configuration": "1. Copy server files to src/server\\n2. Add API route handler\\n3. Wrap app with TRPCProvider\\n4. Create routers for your API",
+    "example": "const { data } = trpc.user.getById.useQuery({ id: '123' })"
+  },
+  "relatedTemplates": [],
+  "author": "vibe-templates",
+  "createdAt": "2025-01-28",
+  "updatedAt": "2025-01-28"
+}

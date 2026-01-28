@@ -1,0 +1,35 @@
+{
+  "id": "typescript/nextjs/payment/stripe-subscription",
+  "name": "Stripe Subscriptions",
+  "description": "Stripe subscription billing with customer portal. Handles recurring payments, plan changes, cancellations, and webhook events.",
+  "version": "1.0.0",
+  "category": "payment",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "stripe": "^17.0.0",
+    "@stripe/stripe-js": "^4.0.0"
+  },
+  "devDependencies": {},
+  "envVariables": [
+    { "name": "STRIPE_SECRET_KEY", "description": "Stripe secret key", "required": true, "example": "sk_test_..." },
+    { "name": "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY", "description": "Stripe publishable key", "required": true, "example": "pk_test_..." },
+    { "name": "STRIPE_WEBHOOK_SECRET", "description": "Stripe webhook signing secret", "required": true, "example": "whsec_..." }
+  ],
+  "files": [
+    { "path": "src/lib/stripe.ts", "description": "Stripe client", "isRequired": true },
+    { "path": "src/app/api/subscription/create/route.ts", "description": "Create subscription checkout", "isRequired": true },
+    { "path": "src/app/api/subscription/portal/route.ts", "description": "Customer portal link", "isRequired": true },
+    { "path": "src/app/api/webhooks/stripe/route.ts", "description": "Subscription webhook handler", "isRequired": true }
+  ],
+  "tags": ["payment", "stripe", "subscription", "recurring", "saas", "billing"],
+  "usage": {
+    "installation": "pnpm add stripe @stripe/stripe-js",
+    "configuration": "1. Create subscription products/prices in Stripe Dashboard\\n2. Add API keys and webhook secret to .env\\n3. Configure Customer Portal in Stripe Dashboard",
+    "example": "const response = await fetch('/api/subscription/create', { method: 'POST', body: JSON.stringify({ priceId }) })"
+  },
+  "relatedTemplates": ["typescript/nextjs/payment/stripe-checkout"],
+  "author": "vibe-templates",
+  "createdAt": "2025-01-28",
+  "updatedAt": "2025-01-28"
+}

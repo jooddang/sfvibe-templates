@@ -40,7 +40,7 @@
     "example": "import { auth, signIn, signOut } from '@/auth'\\n\\nconst session = await auth()\\nawait signIn('credentials', { email, password })"
   },
   "relatedTemplates": ["typescript/nextjs/auth/nextauth-google", "typescript/nextjs/database/prisma-setup"],
-  "author": "vibe-templates",
+  "author": "sfvibe-templates",
   "createdAt": "2025-01-28",
   "updatedAt": "2025-01-28"
 }

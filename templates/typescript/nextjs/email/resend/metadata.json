@@ -27,7 +27,7 @@
     "example": "import { sendEmail } from '@/lib/email'\nawait sendEmail({ to: 'user@example.com', subject: 'Welcome!', react: WelcomeEmail({ name: 'User' }) })"
   },
   "relatedTemplates": [],
-  "author": "vibe-templates",
+  "author": "sfvibe-templates",
   "createdAt": "2025-01-28",
   "updatedAt": "2025-01-28"
 }

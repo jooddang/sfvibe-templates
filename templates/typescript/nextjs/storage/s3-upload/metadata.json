@@ -32,7 +32,7 @@
     "example": "const { url } = await fetch('/api/upload', { method: 'POST', body: JSON.stringify({ filename, contentType }) }).then(r => r.json())\nawait fetch(url, { method: 'PUT', body: file })"
   },
   "relatedTemplates": [],
-  "author": "vibe-templates",
+  "author": "sfvibe-templates",
   "createdAt": "2025-01-28",
   "updatedAt": "2025-01-28"
 }

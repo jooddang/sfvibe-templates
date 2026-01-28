@@ -1,17 +1,17 @@
-# vibe-templates-mcp
+# sfvibe-templates-mcp
 
 Reusable code templates MCP server for AI coding agents.
 
-[![npm version](https://badge.fury.io/js/vibe-templates-mcp.svg)](https://www.npmjs.com/package/vibe-templates-mcp)
+[![npm version](https://badge.fury.io/js/sfvibe-templates-mcp.svg)](https://www.npmjs.com/package/sfvibe-templates-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
 
-**vibe-templates-mcp** provides production-ready code templates to AI coding agents (Cursor, Claude Code, Windsurf, etc.) via the Model Context Protocol (MCP). Stop generating boilerplate from scratch - get high-quality, tested templates instantly.
+**sfvibe-templates-mcp** provides production-ready code templates to AI coding agents (Cursor, Claude Code, Windsurf, etc.) via the Model Context Protocol (MCP). Stop generating boilerplate from scratch - get high-quality, tested templates instantly.
 
-## Why vibe-templates? (vs Documentation Fetchers)
+## Why sfvibe-templates? (vs Documentation Fetchers)
 
-| Aspect | vibe-templates | Documentation Fetchers (e.g., Context7) |
+| Aspect | sfvibe-templates | Documentation Fetchers (e.g., Context7) |
 |--------|----------------|----------------------------------------|
 | **Token Usage** | ~500-1,500 tokens per template | ~3,000-15,000+ tokens per doc page |
 | **Response Type** | Curated, production-ready code | Raw documentation (needs interpretation) |
@@ -32,7 +32,7 @@ Documentation Fetcher approach:
 ├─ Code generation → 1,500 tokens
 └─ Total: ~12,000+ tokens
 
-vibe-templates approach:
+sfvibe-templates approach:
 ├─ Search query → 200 tokens
 ├─ Template fetch → 800 tokens (exact code needed)
 ├─ Copy & configure → 0 tokens
@@ -60,9 +60,9 @@ Add to `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "vibe-templates": {
+    "sfvibe-templates": {
       "command": "npx",
-      "args": ["-y", "vibe-templates-mcp"],
+      "args": ["-y", "sfvibe-templates-mcp"],
       "env": {
         "OPENAI_API_KEY": "sk-..."
       }
@@ -74,7 +74,7 @@ Add to `~/.cursor/mcp.json`:
 ### Claude Code
 
 ```bash
-claude mcp add vibe-templates -- npx -y vibe-templates-mcp
+claude mcp add sfvibe-templates -- npx -y sfvibe-templates-mcp
 ```
 
 ### VS Code (Copilot)
@@ -84,9 +84,9 @@ Add to your settings.json:
 ```json
 {
   "mcp.servers": {
-    "vibe-templates": {
+    "sfvibe-templates": {
       "command": "npx",
-      "args": ["-y", "vibe-templates-mcp"]
+      "args": ["-y", "sfvibe-templates-mcp"]
     }
   }
 }
@@ -152,8 +152,8 @@ Output: List of templates in the category
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/vibe-templates-mcp.git
-cd vibe-templates-mcp
+git clone https://github.com/your-username/sfvibe-templates-mcp.git
+cd sfvibe-templates-mcp
 
 # Install dependencies
 pnpm install
@@ -201,4 +201,4 @@ MIT - see [LICENSE](LICENSE) for details.
 ## Links
 
 - [MCP Specification](https://modelcontextprotocol.io/)
-- [Report Issues](https://github.com/your-username/vibe-templates-mcp/issues)
+- [Report Issues](https://github.com/your-username/sfvibe-templates-mcp/issues)

@@ -1,12 +1,12 @@
 {
-  "name": "vibe-templates-mcp",
+  "name": "sfvibe-templates-mcp",
   "version": "1.0.0",
   "description": "Reusable code templates MCP server for AI coding agents",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "vibe-templates-mcp": "dist/index.js"
+    "sfvibe-templates-mcp": "dist/index.js"
   },
   "files": [
     "dist",
@@ -37,7 +37,7 @@
     "stripe",
     "prisma"
   ],
-  "author": "vibe-templates",
+  "author": "sfvibe-templates",
   "license": "MIT",
   "repository": {
     "type": "git",

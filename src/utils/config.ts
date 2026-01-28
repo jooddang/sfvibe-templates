@@ -1,5 +1,5 @@
 /**
- * Configuration module for the vibe-templates-mcp server
+ * Configuration module for the sfvibe-templates-mcp server
  * @module utils/config
  */
 

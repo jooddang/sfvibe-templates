@@ -26,7 +26,7 @@
     "example": "import { prisma } from '@/lib/prisma'\nconst users = await prisma.user.findMany()"
   },
   "relatedTemplates": ["typescript/nextjs/auth/nextauth-credentials", "typescript/nextjs/database/drizzle-setup"],
-  "author": "vibe-templates",
+  "author": "sfvibe-templates",
   "createdAt": "2025-01-28",
   "updatedAt": "2025-01-28"
 }

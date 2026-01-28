@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * vibe-templates-mcp entry point
+ * sfvibe-templates-mcp entry point
  * MCP server for reusable code templates
  * @module index
  */

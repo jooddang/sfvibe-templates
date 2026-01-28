@@ -1,5 +1,5 @@
 /**
- * Logging module for the vibe-templates-mcp server
+ * Logging module for the sfvibe-templates-mcp server
  * @module utils/logger
  */
 

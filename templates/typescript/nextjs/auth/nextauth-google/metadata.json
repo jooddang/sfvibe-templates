@@ -28,7 +28,7 @@
     "example": "import { auth, signIn, signOut } from '@/auth'\\n\\nconst session = await auth()\\nawait signIn('google')"
   },
   "relatedTemplates": ["typescript/nextjs/auth/nextauth-credentials", "typescript/nextjs/database/prisma-setup"],
-  "author": "vibe-templates",
+  "author": "sfvibe-templates",
   "createdAt": "2025-01-28",
   "updatedAt": "2025-01-28"
 }

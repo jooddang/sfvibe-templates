@@ -29,7 +29,7 @@
     "example": "import { createClient } from '@/lib/supabase/server'\\n\\nconst supabase = await createClient()\\nconst { data: { user } } = await supabase.auth.getUser()"
   },
   "relatedTemplates": ["typescript/nextjs/database/prisma-setup"],
-  "author": "vibe-templates",
+  "author": "sfvibe-templates",
   "createdAt": "2025-01-28",
   "updatedAt": "2025-01-28"
 }

@@ -57,7 +57,7 @@ interface ServerDependencies {
  */
 export function createServer(deps: ServerDependencies): McpServer {
   const server = new McpServer({
-    name: 'vibe-templates',
+    name: 'sfvibe-templates',
     version: '1.0.0',
   });
 
@@ -282,7 +282,7 @@ async function initializeServices(): Promise<ServerDependencies> {
  * Start the MCP server
  */
 export async function startServer(): Promise<void> {
-  logger.info('Starting vibe-templates MCP server...');
+  logger.info('Starting sfvibe-templates MCP server...');
 
   try {
     // Initialize services

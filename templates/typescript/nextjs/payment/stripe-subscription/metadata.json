@@ -29,7 +29,7 @@
     "example": "const response = await fetch('/api/subscription/create', { method: 'POST', body: JSON.stringify({ priceId }) })"
   },
   "relatedTemplates": ["typescript/nextjs/payment/stripe-checkout"],
-  "author": "vibe-templates",
+  "author": "sfvibe-templates",
   "createdAt": "2025-01-28",
   "updatedAt": "2025-01-28"
 }

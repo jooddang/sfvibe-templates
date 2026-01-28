@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-**vibe-templates-mcp** - AI 코딩 에이전트를 위한 재사용 가능한 코드 템플릿 MCP 서버
+**sfvibe-templates-mcp** - AI 코딩 에이전트를 위한 재사용 가능한 코드 템플릿 MCP 서버
 
 이 프로젝트는 Cursor, Claude Code, Windsurf 등 AI 코딩 도구에서 사용할 수 있는
 고품질 코드 템플릿을 제공하는 MCP(Model Context Protocol) 서버입니다.

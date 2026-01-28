@@ -1,5 +1,5 @@
 /**
- * Core types for the vibe-templates-mcp server
+ * Core types for the sfvibe-templates-mcp server
  * @module types
  */
 

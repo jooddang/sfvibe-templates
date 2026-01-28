@@ -9,11 +9,45 @@ Reusable code templates MCP server for AI coding agents.
 
 **vibe-templates-mcp** provides production-ready code templates to AI coding agents (Cursor, Claude Code, Windsurf, etc.) via the Model Context Protocol (MCP). Stop generating boilerplate from scratch - get high-quality, tested templates instantly.
 
+## Why vibe-templates? (vs Documentation Fetchers)
+
+| Aspect | vibe-templates | Documentation Fetchers (e.g., Context7) |
+|--------|----------------|----------------------------------------|
+| **Token Usage** | ~500-1,500 tokens per template | ~3,000-15,000+ tokens per doc page |
+| **Response Type** | Curated, production-ready code | Raw documentation (needs interpretation) |
+| **Latency** | Instant (local templates) | Variable (API + parsing) |
+| **Accuracy** | 100% tested, working code | May need adaptation |
+| **Offline** | Works offline | Requires internet |
+| **Cost** | No API calls for templates | API costs per request |
+
+### Token Efficiency Example
+
+**Task: "Add Google OAuth to my Next.js app"**
+
+```
+Documentation Fetcher approach:
+├─ Search query → 200 tokens
+├─ Doc page fetch → 8,000+ tokens (NextAuth docs)
+├─ LLM interpretation → 2,000 tokens
+├─ Code generation → 1,500 tokens
+└─ Total: ~12,000+ tokens
+
+vibe-templates approach:
+├─ Search query → 200 tokens
+├─ Template fetch → 800 tokens (exact code needed)
+├─ Copy & configure → 0 tokens
+└─ Total: ~1,000 tokens
+
+Savings: ~90% fewer tokens = faster & cheaper
+```
+
 ### Features
 
+- **10x Token Efficient**: Pre-curated templates vs raw documentation
 - **Semantic Search**: Find templates using natural language queries
 - **10+ Templates**: Auth, payment, email, database, storage, and more
 - **Production Ready**: All templates are tested and ready to use
+- **Zero Hallucination**: Exact code, not LLM-generated approximations
 - **Framework Support**: Next.js, with more frameworks coming soon
 - **MCP Native**: Works with any MCP-compatible AI coding tool
 

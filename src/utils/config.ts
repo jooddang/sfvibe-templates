@@ -50,8 +50,8 @@ function loadConfig(): Config {
   const result = configSchema.safeParse(process.env);
 
   if (!result.success) {
-    const errors = result.error.errors
-      .map((e) => `  - ${e.path.join('.')}: ${e.message}`)
+    const errors = result.error.issues
+      .map((e) => `  - ${String(e.path.join('.'))}: ${e.message}`)
       .join('\n');
     throw new Error(`Configuration validation failed:\n${errors}`);
   }

@@ -1,0 +1,34 @@
+{
+  "id": "typescript/nextjs/auth/nextauth-google",
+  "name": "NextAuth.js Google OAuth",
+  "description": "Google OAuth authentication with NextAuth.js v5. Simple social login integration with automatic account creation.",
+  "version": "1.0.0",
+  "category": "auth",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "next-auth": "^5.0.0-beta.25",
+    "@auth/prisma-adapter": "^2.7.4"
+  },
+  "devDependencies": {},
+  "envVariables": [
+    { "name": "AUTH_SECRET", "description": "Secret for NextAuth.js session encryption", "required": true, "example": "openssl rand -base64 32" },
+    { "name": "AUTH_GOOGLE_ID", "description": "Google OAuth Client ID", "required": true, "example": "your-client-id.apps.googleusercontent.com" },
+    { "name": "AUTH_GOOGLE_SECRET", "description": "Google OAuth Client Secret", "required": true, "example": "your-client-secret" }
+  ],
+  "files": [
+    { "path": "src/auth.ts", "description": "NextAuth configuration with Google provider", "isRequired": true },
+    { "path": "src/app/api/auth/[...nextauth]/route.ts", "description": "NextAuth API route", "isRequired": true },
+    { "path": "src/components/auth-buttons.tsx", "description": "Sign in/out button components", "isRequired": false }
+  ],
+  "tags": ["auth", "nextauth", "google", "oauth", "social-login", "sso"],
+  "usage": {
+    "installation": "pnpm add next-auth@beta @auth/prisma-adapter",
+    "configuration": "1. Create Google OAuth credentials at console.cloud.google.com\\n2. Add AUTH_SECRET, AUTH_GOOGLE_ID, AUTH_GOOGLE_SECRET to .env\\n3. Copy auth.ts and route.ts to your project",
+    "example": "import { auth, signIn, signOut } from '@/auth'\\n\\nconst session = await auth()\\nawait signIn('google')"
+  },
+  "relatedTemplates": ["typescript/nextjs/auth/nextauth-credentials", "typescript/nextjs/database/prisma-setup"],
+  "author": "sfvibe-templates",
+  "createdAt": "2025-01-28",
+  "updatedAt": "2025-01-28"
+}

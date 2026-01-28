@@ -1,0 +1,35 @@
+{
+  "id": "typescript/nextjs/auth/supabase-auth",
+  "name": "Supabase Authentication",
+  "description": "Supabase Auth with @supabase/ssr for Next.js App Router. Supports email/password, OAuth providers, and magic links.",
+  "version": "1.0.0",
+  "category": "auth",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "@supabase/ssr": "^0.5.0"
+  },
+  "devDependencies": {},
+  "envVariables": [
+    { "name": "NEXT_PUBLIC_SUPABASE_URL", "description": "Your Supabase project URL", "required": true, "example": "https://your-project.supabase.co" },
+    { "name": "NEXT_PUBLIC_SUPABASE_ANON_KEY", "description": "Your Supabase anonymous key", "required": true, "example": "eyJ..." }
+  ],
+  "files": [
+    { "path": "src/lib/supabase/client.ts", "description": "Browser Supabase client", "isRequired": true },
+    { "path": "src/lib/supabase/server.ts", "description": "Server Supabase client", "isRequired": true },
+    { "path": "src/lib/supabase/middleware.ts", "description": "Middleware Supabase client", "isRequired": true },
+    { "path": "src/middleware.ts", "description": "Next.js middleware for auth", "isRequired": true },
+    { "path": "src/app/auth/callback/route.ts", "description": "OAuth callback handler", "isRequired": true }
+  ],
+  "tags": ["auth", "supabase", "oauth", "magic-link", "email", "password"],
+  "usage": {
+    "installation": "pnpm add @supabase/supabase-js @supabase/ssr",
+    "configuration": "1. Create Supabase project at supabase.com\\n2. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to .env\\n3. Copy client files and middleware",
+    "example": "import { createClient } from '@/lib/supabase/server'\\n\\nconst supabase = await createClient()\\nconst { data: { user } } = await supabase.auth.getUser()"
+  },
+  "relatedTemplates": ["typescript/nextjs/database/prisma-setup"],
+  "author": "sfvibe-templates",
+  "createdAt": "2025-01-28",
+  "updatedAt": "2025-01-28"
+}

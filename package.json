@@ -1,0 +1,72 @@
+{
+  "name": "sfvibe-templates-mcp",
+  "version": "1.0.0",
+  "description": "Reusable code templates MCP server for AI coding agents",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "sfvibe-templates-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "generate-embeddings": "tsx scripts/generate-embeddings.ts",
+    "validate-templates": "tsx scripts/validate-templates.ts",
+    "prepublishOnly": "pnpm run build && pnpm run test && pnpm run typecheck"
+  },
+  "keywords": [
+    "mcp",
+    "ai",
+    "templates",
+    "cursor",
+    "claude",
+    "code-generation",
+    "nextjs",
+    "authentication",
+    "stripe",
+    "prisma"
+  ],
+  "author": "sfvibe-templates",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jooddang/sfvibe-templates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jooddang/sfvibe-templates/issues"
+  },
+  "homepage": "https://github.com/jooddang/sfvibe-templates#readme",
+  "packageManager": "pnpm@10.28.1",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.3",
+    "dotenv": "^17.2.3",
+    "openai": "^6.16.0",
+    "winston": "^3.19.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^25.1.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^9.39.2",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0",
+    "vitest": "^4.0.18"
+  }
+}

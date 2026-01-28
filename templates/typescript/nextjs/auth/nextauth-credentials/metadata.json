@@ -1,0 +1,46 @@
+{
+  "id": "typescript/nextjs/auth/nextauth-credentials",
+  "name": "NextAuth.js Credentials Authentication",
+  "description": "Email/password authentication with NextAuth.js v5. Includes login, signup, and session management with bcrypt password hashing.",
+  "version": "1.0.0",
+  "category": "auth",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "next-auth": "^5.0.0-beta.25",
+    "@auth/prisma-adapter": "^2.7.4",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6"
+  },
+  "envVariables": [
+    {
+      "name": "AUTH_SECRET",
+      "description": "Secret for NextAuth.js session encryption. Generate with: openssl rand -base64 32",
+      "required": true,
+      "example": "your-secret-key-here"
+    },
+    {
+      "name": "AUTH_URL",
+      "description": "Your application URL",
+      "required": true,
+      "example": "http://localhost:3000"
+    }
+  ],
+  "files": [
+    { "path": "src/auth.ts", "description": "NextAuth configuration", "isRequired": true },
+    { "path": "src/app/api/auth/[...nextauth]/route.ts", "description": "NextAuth API route", "isRequired": true },
+    { "path": "src/lib/auth-actions.ts", "description": "Server actions for auth", "isRequired": true }
+  ],
+  "tags": ["auth", "nextauth", "credentials", "email", "password", "login", "signup", "session"],
+  "usage": {
+    "installation": "pnpm add next-auth@beta @auth/prisma-adapter bcryptjs && pnpm add -D @types/bcryptjs",
+    "configuration": "1. Add AUTH_SECRET and AUTH_URL to .env\\n2. Copy auth.ts to src/\\n3. Copy API route to src/app/api/auth/[...nextauth]/\\n4. Set up Prisma with User model",
+    "example": "import { auth, signIn, signOut } from '@/auth'\\n\\nconst session = await auth()\\nawait signIn('credentials', { email, password })"
+  },
+  "relatedTemplates": ["typescript/nextjs/auth/nextauth-google", "typescript/nextjs/database/prisma-setup"],
+  "author": "sfvibe-templates",
+  "createdAt": "2025-01-28",
+  "updatedAt": "2025-01-28"
+}

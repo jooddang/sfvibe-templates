@@ -1,0 +1,33 @@
+{
+  "id": "typescript/nextjs/email/resend",
+  "name": "Resend Transactional Email",
+  "description": "Transactional email sending with Resend and React Email. Includes email templates, sending utilities, and API routes.",
+  "version": "1.0.0",
+  "category": "email",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "resend": "^4.0.0",
+    "@react-email/components": "^0.0.25"
+  },
+  "devDependencies": {},
+  "envVariables": [
+    { "name": "RESEND_API_KEY", "description": "Resend API key", "required": true, "example": "re_..." },
+    { "name": "EMAIL_FROM", "description": "Default sender email address", "required": true, "example": "noreply@yourdomain.com" }
+  ],
+  "files": [
+    { "path": "src/lib/email.ts", "description": "Email sending utility", "isRequired": true },
+    { "path": "src/emails/welcome.tsx", "description": "Welcome email template", "isRequired": false },
+    { "path": "src/app/api/email/send/route.ts", "description": "Email sending API", "isRequired": false }
+  ],
+  "tags": ["email", "resend", "transactional", "react-email", "notification"],
+  "usage": {
+    "installation": "pnpm add resend @react-email/components",
+    "configuration": "1. Get API key from resend.com\n2. Add RESEND_API_KEY and EMAIL_FROM to .env\n3. Verify your domain in Resend dashboard",
+    "example": "import { sendEmail } from '@/lib/email'\nawait sendEmail({ to: 'user@example.com', subject: 'Welcome!', react: WelcomeEmail({ name: 'User' }) })"
+  },
+  "relatedTemplates": [],
+  "author": "sfvibe-templates",
+  "createdAt": "2025-01-28",
+  "updatedAt": "2025-01-28"
+}

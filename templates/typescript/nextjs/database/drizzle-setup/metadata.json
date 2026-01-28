@@ -1,0 +1,34 @@
+{
+  "id": "typescript/nextjs/database/drizzle-setup",
+  "name": "Drizzle ORM Setup",
+  "description": "Drizzle ORM setup for Next.js with PostgreSQL. Type-safe SQL queries with excellent TypeScript support.",
+  "version": "1.0.0",
+  "category": "database",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "drizzle-orm": "^0.36.0",
+    "@neondatabase/serverless": "^0.10.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.28.0"
+  },
+  "envVariables": [
+    { "name": "DATABASE_URL", "description": "PostgreSQL connection string", "required": true, "example": "postgresql://user:password@localhost:5432/mydb" }
+  ],
+  "files": [
+    { "path": "src/db/index.ts", "description": "Drizzle client", "isRequired": true },
+    { "path": "src/db/schema.ts", "description": "Database schema", "isRequired": true },
+    { "path": "drizzle.config.ts", "description": "Drizzle Kit config", "isRequired": true }
+  ],
+  "tags": ["database", "drizzle", "orm", "postgresql", "type-safe", "sql"],
+  "usage": {
+    "installation": "pnpm add drizzle-orm @neondatabase/serverless && pnpm add -D drizzle-kit",
+    "configuration": "1. Add DATABASE_URL to .env\n2. Define schema in src/db/schema.ts\n3. Run: npx drizzle-kit push",
+    "example": "import { db } from '@/db'\nimport { users } from '@/db/schema'\nconst allUsers = await db.select().from(users)"
+  },
+  "relatedTemplates": ["typescript/nextjs/database/prisma-setup"],
+  "author": "sfvibe-templates",
+  "createdAt": "2025-01-28",
+  "updatedAt": "2025-01-28"
+}

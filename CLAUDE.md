@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-**vibe-templates-mcp** - AI 코딩 에이전트를 위한 재사용 가능한 코드 템플릿 MCP 서버
+**sfvibe-templates-mcp** - AI 코딩 에이전트를 위한 재사용 가능한 코드 템플릿 MCP 서버
 
 이 프로젝트는 Cursor, Claude Code, Windsurf 등 AI 코딩 도구에서 사용할 수 있는
 고품질 코드 템플릿을 제공하는 MCP(Model Context Protocol) 서버입니다.
@@ -12,7 +12,7 @@
 ## Key Documents
 
 - `PRD.md` - 제품 요구사항 문서 (아키텍처, API 스펙, 템플릿 스키마)
-- `TASKS.md` - 구현 태스크 목록 (순서대로 진행)
+- `Tasks.md` - 구현 태스크 목록 (순서대로 진행)
 
 ## Tech Stack
 
@@ -235,7 +235,7 @@ chore: 빌드, 설정 변경
 
 ## Workflow
 
-1. TASKS.md에서 현재 진행할 Task 확인
+1. Tasks.md에서 현재 진행할 Task 확인
 1. Task 구현
 1. 테스트 작성 및 실행
 1. 타입 체크 및 린트 통과 확인
@@ -247,9 +247,9 @@ chore: 빌드, 설정 변경
 구현 중 불명확한 부분이 있으면:
 
 1. PRD.md 확인
-1. TASKS.md의 해당 Task 세부 내용 확인
+1. Tasks.md의 해당 Task 세부 내용 확인
 1. 그래도 불명확하면 구현 전 질문
 
 -----
 
-**시작하려면**: `TASKS.md`의 Task 0.1부터 순서대로 진행하세요.
+**시작하려면**: `Tasks.md`의 Task 0.1부터 순서대로 진행하세요.

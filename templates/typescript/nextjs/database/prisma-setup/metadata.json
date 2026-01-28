@@ -1,0 +1,32 @@
+{
+  "id": "typescript/nextjs/database/prisma-setup",
+  "name": "Prisma ORM Setup",
+  "description": "Prisma ORM setup for Next.js with PostgreSQL. Includes schema, client configuration, migrations, and database utilities.",
+  "version": "1.0.0",
+  "category": "database",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "@prisma/client": "^6.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.0.0"
+  },
+  "envVariables": [
+    { "name": "DATABASE_URL", "description": "PostgreSQL connection string", "required": true, "example": "postgresql://user:password@localhost:5432/mydb?schema=public" }
+  ],
+  "files": [
+    { "path": "prisma/schema.prisma", "description": "Prisma schema file", "isRequired": true },
+    { "path": "src/lib/prisma.ts", "description": "Prisma client singleton", "isRequired": true }
+  ],
+  "tags": ["database", "prisma", "orm", "postgresql", "mysql", "sqlite", "migrations"],
+  "usage": {
+    "installation": "pnpm add @prisma/client && pnpm add -D prisma",
+    "configuration": "1. Add DATABASE_URL to .env\n2. Run: npx prisma generate\n3. Run: npx prisma db push (or npx prisma migrate dev)",
+    "example": "import { prisma } from '@/lib/prisma'\nconst users = await prisma.user.findMany()"
+  },
+  "relatedTemplates": ["typescript/nextjs/auth/nextauth-credentials", "typescript/nextjs/database/drizzle-setup"],
+  "author": "sfvibe-templates",
+  "createdAt": "2025-01-28",
+  "updatedAt": "2025-01-28"
+}

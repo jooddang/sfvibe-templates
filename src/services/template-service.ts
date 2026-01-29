@@ -51,21 +51,48 @@ export class TemplateService {
   }
 
   /**
+   * Validate a path component to prevent path traversal attacks
+   * @param component - Path component to validate
+   * @returns true if valid
+   */
+  private isValidPathComponent(component: string): boolean {
+    // Reject empty, dots only, or path traversal attempts
+    if (!component || component === '.' || component === '..') {
+      return false;
+    }
+    // Only allow alphanumeric, hyphens, and underscores (safe characters)
+    return /^[a-zA-Z0-9_-]+$/.test(component);
+  }
+
+  /**
    * Parse a template ID into its components
    * @param id - Template ID (e.g., "typescript/nextjs/auth/nextauth-google")
    * @returns Parsed components
+   * @throws InvalidTemplateError if ID format is invalid or contains path traversal
    */
   public parseTemplateId(id: string): ParsedTemplateId {
     const parts = id.split('/');
     if (parts.length !== 4) {
       throw new InvalidTemplateError(id, 'Template ID must have format: language/framework/category/name');
     }
-    return {
-      language: parts[0],
-      framework: parts[1],
-      category: parts[2],
-      name: parts[3],
-    };
+
+    const [language, framework, category, name] = parts;
+
+    // Security: Validate each component to prevent path traversal
+    if (!this.isValidPathComponent(language)) {
+      throw new InvalidTemplateError(id, 'Invalid characters in language');
+    }
+    if (!this.isValidPathComponent(framework)) {
+      throw new InvalidTemplateError(id, 'Invalid characters in framework');
+    }
+    if (!this.isValidPathComponent(category)) {
+      throw new InvalidTemplateError(id, 'Invalid characters in category');
+    }
+    if (!this.isValidPathComponent(name)) {
+      throw new InvalidTemplateError(id, 'Invalid characters in name');
+    }
+
+    return { language, framework, category, name };
   }
 
   /**

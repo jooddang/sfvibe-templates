@@ -43,8 +43,6 @@ Savings: ~90% fewer tokens = faster & cheaper
 
 ### Real-World Token Usage (Measured)
 
-We ran comprehensive tests to measure actual token usage. Here are the results:
-
 | Operation | Tokens | Response Time |
 |-----------|--------|---------------|
 | `list_templates` (all 10) | ~1,101 | 9ms |
@@ -60,11 +58,6 @@ We ran comprehensive tests to measure actual token usage. Here are the results:
 - Average template size: **~1,237 tokens**
 - Template range: **818 - 1,572 tokens**
 - Estimated savings vs doc fetchers: **~88-90%**
-
-Run the test yourself:
-```bash
-pnpm tsx test-project/token-measurement.ts
-```
 
 ### Features
 
@@ -166,58 +159,8 @@ Output: List of templates in the category
 | Variable | Required | Description |
 |----------|----------|-------------|
 | OPENAI_API_KEY | No* | For semantic search (falls back to keyword search) |
-| TEMPLATES_DIR | No | Custom templates directory |
-| LOG_LEVEL | No | debug, info, warn, error (default: info) |
 
 *Semantic search provides better results but requires an OpenAI API key. Without it, keyword search is used.
-
-## Development
-
-### Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/sfvibe-templates-mcp.git
-cd sfvibe-templates-mcp
-
-# Install dependencies
-pnpm install
-
-# Build
-pnpm build
-
-# Run tests
-pnpm test
-```
-
-### Scripts
-
-```bash
-pnpm dev          # Watch mode
-pnpm build        # Production build
-pnpm test         # Run tests
-pnpm typecheck    # Type checking
-pnpm lint         # Linting
-```
-
-### Testing with MCP Inspector
-
-```bash
-npx @anthropic-ai/mcp-inspector dist/index.js
-```
-
-## Contributing
-
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Adding a Template
-
-1. Create a directory under `templates/{language}/{framework}/{category}/{template-name}/`
-2. Add `metadata.json` with template metadata
-3. Add code files under `files/`
-4. Add `README.md` with documentation
-5. Run `pnpm validate-templates` to check
-6. Submit a PR
 
 ## License
 
@@ -226,4 +169,4 @@ MIT - see [LICENSE](LICENSE) for details.
 ## Links
 
 - [MCP Specification](https://modelcontextprotocol.io/)
-- [Report Issues](https://github.com/your-username/sfvibe-templates-mcp/issues)
+- [Report Issues](https://github.com/jooddang/sfvibe-templates/issues)

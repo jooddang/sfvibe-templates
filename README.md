@@ -41,6 +41,31 @@ sfvibe-templates approach:
 Savings: ~90% fewer tokens = faster & cheaper
 ```
 
+### Real-World Token Usage (Measured)
+
+We ran comprehensive tests to measure actual token usage. Here are the results:
+
+| Operation | Tokens | Response Time |
+|-----------|--------|---------------|
+| `list_templates` (all 10) | ~1,101 | 9ms |
+| `list_templates` (auth only) | ~345 | 8ms |
+| `search_templates` | ~419 | 1ms |
+| `get_template` (NextAuth Google) | ~1,121 | 3ms |
+| `get_template` (NextAuth Credentials) | ~1,411 | 2ms |
+| `get_template` (Stripe Checkout) | ~1,572 | 2ms |
+| `get_template` (Prisma Setup) | ~818 | 1ms |
+| `get_template` (tRPC Setup) | ~1,262 | 3ms |
+
+**Key Metrics:**
+- Average template size: **~1,237 tokens**
+- Template range: **818 - 1,572 tokens**
+- Estimated savings vs doc fetchers: **~88-90%**
+
+Run the test yourself:
+```bash
+pnpm tsx test-project/token-measurement.ts
+```
+
 ### Features
 
 - **10x Token Efficient**: Pre-curated templates vs raw documentation

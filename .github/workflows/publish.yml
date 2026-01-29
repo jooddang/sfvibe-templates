@@ -3,6 +3,8 @@ name: Publish to npm
 on:
   release:
     types: [published]
+  push:
+    branches: [main]
 
 jobs:
   publish:
@@ -11,6 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -22,22 +26,48 @@ jobs:
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Check if version changed
+        id: version-check
+        run: |
+          # Get current version from package.json
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+          # Check if this version already exists on npm
+          if npm view sfvibe-templates-mcp@$CURRENT_VERSION version 2>/dev/null; then
+            echo "Version $CURRENT_VERSION already published"
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          else
+            echo "Version $CURRENT_VERSION not yet published"
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Install dependencies
+        if: steps.version-check.outputs.should_publish == 'true'
         run: pnpm install
 
       - name: Type check
+        if: steps.version-check.outputs.should_publish == 'true'
         run: pnpm typecheck
 
       - name: Run tests
+        if: steps.version-check.outputs.should_publish == 'true'
         run: pnpm test
 
       - name: Build
+        if: steps.version-check.outputs.should_publish == 'true'
         run: pnpm build
 
       - name: Validate templates
+        if: steps.version-check.outputs.should_publish == 'true'
         run: pnpm validate-templates
 
       - name: Publish to npm
+        if: steps.version-check.outputs.should_publish == 'true'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Skip publish (version exists)
+        if: steps.version-check.outputs.should_publish == 'false'
+        run: echo "Skipping publish - version ${{ steps.version-check.outputs.current_version }} already exists on npm"

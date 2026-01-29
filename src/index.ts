@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * sfvibe-templates-mcp entry point
  * MCP server for reusable code templates

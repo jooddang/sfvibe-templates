@@ -9,6 +9,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    environment: npmjs
 
     steps:
       - name: Checkout
@@ -64,7 +68,7 @@ jobs:
 
       - name: Publish to npm
         if: steps.version-check.outputs.should_publish == 'true'
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

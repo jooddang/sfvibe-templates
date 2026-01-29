@@ -41,6 +41,24 @@ sfvibe-templates approach:
 Savings: ~90% fewer tokens = faster & cheaper
 ```
 
+### Real-World Token Usage (Measured)
+
+| Operation | Tokens | Response Time |
+|-----------|--------|---------------|
+| `list_templates` (all 10) | ~1,101 | 9ms |
+| `list_templates` (auth only) | ~345 | 8ms |
+| `search_templates` | ~419 | 1ms |
+| `get_template` (NextAuth Google) | ~1,121 | 3ms |
+| `get_template` (NextAuth Credentials) | ~1,411 | 2ms |
+| `get_template` (Stripe Checkout) | ~1,572 | 2ms |
+| `get_template` (Prisma Setup) | ~818 | 1ms |
+| `get_template` (tRPC Setup) | ~1,262 | 3ms |
+
+**Key Metrics:**
+- Average template size: **~1,237 tokens**
+- Template range: **818 - 1,572 tokens**
+- Estimated savings vs doc fetchers: **~88-90%**
+
 ### Features
 
 - **10x Token Efficient**: Pre-curated templates vs raw documentation
@@ -140,59 +158,27 @@ Output: List of templates in the category
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| OPENAI_API_KEY | No* | For semantic search (falls back to keyword search) |
-| TEMPLATES_DIR | No | Custom templates directory |
-| LOG_LEVEL | No | debug, info, warn, error (default: info) |
+| OPENAI_API_KEY | No* | OpenAI API key for semantic search |
+| GOOGLE_API_KEY | No* | Google Gemini API key for semantic search |
+| ANTHROPIC_API_KEY | No* | Anthropic Claude API key for semantic search |
 
-*Semantic search provides better results but requires an OpenAI API key. Without it, keyword search is used.
-
-## Development
-
-### Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/sfvibe-templates-mcp.git
-cd sfvibe-templates-mcp
-
-# Install dependencies
-pnpm install
-
-# Build
-pnpm build
-
-# Run tests
-pnpm test
-```
-
-### Scripts
-
-```bash
-pnpm dev          # Watch mode
-pnpm build        # Production build
-pnpm test         # Run tests
-pnpm typecheck    # Type checking
-pnpm lint         # Linting
-```
-
-### Testing with MCP Inspector
-
-```bash
-npx @anthropic-ai/mcp-inspector dist/index.js
-```
+*Semantic search requires one of the API keys above. The system checks in order: OpenAI → Gemini → Claude. Without any key, keyword search is used as fallback.
 
 ## Contributing
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions! Help us build the best collection of templates.
 
-### Adding a Template
+### Contributor Levels
 
-1. Create a directory under `templates/{language}/{framework}/{category}/{template-name}/`
-2. Add `metadata.json` with template metadata
-3. Add code files under `files/`
-4. Add `README.md` with documentation
-5. Run `pnpm validate-templates` to check
-6. Submit a PR
+| Level | Title | Requirements | Privileges |
+|-------|-------|--------------|------------|
+| 1 | Newcomer | First PR merged | Name in Contributors list |
+| 2 | Contributor | 3+ templates | Priority review, badge |
+| 3 | Regular | 10+ templates | Can review PRs |
+| 4 | Expert | 25+ templates | Category ownership |
+| 5 | Maintainer | Invited | Can merge PRs |
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding templates.
 
 ## License
 
@@ -201,4 +187,4 @@ MIT - see [LICENSE](LICENSE) for details.
 ## Links
 
 - [MCP Specification](https://modelcontextprotocol.io/)
-- [Report Issues](https://github.com/your-username/sfvibe-templates-mcp/issues)
+- [Report Issues](https://github.com/jooddang/sfvibe-templates/issues)

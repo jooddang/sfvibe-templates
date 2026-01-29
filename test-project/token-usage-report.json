@@ -1,0 +1,69 @@
+{
+  "timestamp": "2026-01-29T05:26:30.505Z",
+  "results": [
+    {
+      "operation": "list_templates",
+      "description": "List all templates (no filter)",
+      "outputChars": 4403,
+      "outputTokens": 1101,
+      "responseTimeMs": 9
+    },
+    {
+      "operation": "list_templates",
+      "description": "List auth templates",
+      "outputChars": 1377,
+      "outputTokens": 345,
+      "responseTimeMs": 8
+    },
+    {
+      "operation": "search_templates",
+      "description": "Query: \"I need Google authentication for my Next.js app\"",
+      "outputChars": 1674,
+      "outputTokens": 419,
+      "responseTimeMs": 1
+    },
+    {
+      "operation": "get_template",
+      "description": "typescript/nextjs/auth/nextauth-google",
+      "outputChars": 4482,
+      "outputTokens": 1121,
+      "responseTimeMs": 3
+    },
+    {
+      "operation": "get_template",
+      "description": "typescript/nextjs/auth/nextauth-credentials",
+      "outputChars": 5641,
+      "outputTokens": 1411,
+      "responseTimeMs": 2
+    },
+    {
+      "operation": "get_template",
+      "description": "typescript/nextjs/payment/stripe-checkout",
+      "outputChars": 6287,
+      "outputTokens": 1572,
+      "responseTimeMs": 2
+    },
+    {
+      "operation": "get_template",
+      "description": "typescript/nextjs/database/prisma-setup",
+      "outputChars": 3270,
+      "outputTokens": 818,
+      "responseTimeMs": 1
+    },
+    {
+      "operation": "get_template",
+      "description": "typescript/nextjs/api/trpc-setup",
+      "outputChars": 5045,
+      "outputTokens": 1262,
+      "responseTimeMs": 3
+    }
+  ],
+  "summary": {
+    "totalOperations": 8,
+    "totalTokens": 8049,
+    "avgTemplateTokens": 1237,
+    "minTemplateTokens": 818,
+    "maxTemplateTokens": 1572,
+    "estimatedSavingsPercent": 88
+  }
+}

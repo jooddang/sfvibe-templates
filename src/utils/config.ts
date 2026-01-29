@@ -15,8 +15,12 @@ dotenvConfig();
  * Configuration schema with validation
  */
 const configSchema = z.object({
-  /** OpenAI API key for embeddings (optional for local-only mode) */
+  /** OpenAI API key for embeddings (optional) */
   OPENAI_API_KEY: z.string().optional(),
+  /** Google Gemini API key for embeddings (optional) */
+  GOOGLE_API_KEY: z.string().optional(),
+  /** Anthropic Claude API key for embeddings (optional) */
+  ANTHROPIC_API_KEY: z.string().optional(),
   /** Directory containing templates */
   TEMPLATES_DIR: z.string().default('./templates'),
   /** Logging level */
@@ -74,10 +78,26 @@ function loadConfig(): Config {
 export const config = loadConfig();
 
 /**
- * Check if embeddings are available (OpenAI API key configured)
+ * Embedding provider types
+ */
+export type EmbeddingProvider = 'openai' | 'gemini' | 'anthropic';
+
+/**
+ * Check if embeddings are available (any API key configured)
  */
 export function hasEmbeddingsSupport(): boolean {
-  return Boolean(config.OPENAI_API_KEY);
+  return Boolean(config.OPENAI_API_KEY || config.GOOGLE_API_KEY || config.ANTHROPIC_API_KEY);
+}
+
+/**
+ * Get the active embedding provider based on configured API keys
+ * Priority: OpenAI → Gemini → Anthropic
+ */
+export function getEmbeddingProvider(): EmbeddingProvider | null {
+  if (config.OPENAI_API_KEY) return 'openai';
+  if (config.GOOGLE_API_KEY) return 'gemini';
+  if (config.ANTHROPIC_API_KEY) return 'anthropic';
+  return null;
 }
 
 /**

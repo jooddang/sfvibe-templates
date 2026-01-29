@@ -158,9 +158,27 @@ Output: List of templates in the category
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| OPENAI_API_KEY | No* | For semantic search (falls back to keyword search) |
+| OPENAI_API_KEY | No* | OpenAI API key for semantic search |
+| GOOGLE_API_KEY | No* | Google Gemini API key for semantic search |
+| ANTHROPIC_API_KEY | No* | Anthropic Claude API key for semantic search |
 
-*Semantic search provides better results but requires an OpenAI API key. Without it, keyword search is used.
+*Semantic search requires one of the API keys above. The system checks in order: OpenAI → Gemini → Claude. Without any key, keyword search is used as fallback.
+
+## Contributing
+
+We welcome contributions! Help us build the best collection of templates.
+
+### Contributor Levels
+
+| Level | Title | Requirements | Privileges |
+|-------|-------|--------------|------------|
+| 1 | Newcomer | First PR merged | Name in Contributors list |
+| 2 | Contributor | 3+ templates | Priority review, badge |
+| 3 | Regular | 10+ templates | Can review PRs |
+| 4 | Expert | 25+ templates | Category ownership |
+| 5 | Maintainer | Invited | Can merge PRs |
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding templates.
 
 ## License
 

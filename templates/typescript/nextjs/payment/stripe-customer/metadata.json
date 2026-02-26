@@ -1,0 +1,38 @@
+{
+  "id": "typescript/nextjs/payment/stripe-customer",
+  "name": "Stripe Customer",
+  "description": "Customer lifecycle management for Stripe. Get-or-create customers, sync email, manage payment methods, and billing portal access.",
+  "version": "1.0.0",
+  "category": "payment",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "stripe": "^17.0.0",
+    "@prisma/client": "^5.0.0"
+  },
+  "devDependencies": {},
+  "envVariables": [
+    { "name": "STRIPE_SECRET_KEY", "description": "Stripe secret key", "required": true, "example": "sk_test_..." },
+    { "name": "DATABASE_URL", "description": "PostgreSQL connection string", "required": true, "example": "postgresql://..." },
+    { "name": "NEXT_PUBLIC_APP_URL", "description": "Your app URL for portal return", "required": true, "example": "https://yourapp.com" }
+  ],
+  "files": [
+    { "path": "src/lib/customer.ts", "description": "Customer management functions", "isRequired": true },
+    { "path": "src/app/api/customer/payment-methods/route.ts", "description": "List saved payment methods", "isRequired": false },
+    { "path": "src/app/api/customer/portal/route.ts", "description": "Billing portal session", "isRequired": false }
+  ],
+  "tags": ["payment", "stripe", "customer", "billing", "portal", "payment-methods"],
+  "usage": {
+    "installation": "pnpm add stripe @prisma/client",
+    "configuration": "1. Ensure User model has stripeCustomerId field\\n2. Configure Billing Portal in Stripe Dashboard\\n3. Add env vars",
+    "example": "const customerId = await getOrCreateCustomer(userId)"
+  },
+  "relatedTemplates": [
+    "typescript/nextjs/payment/stripe-subscription",
+    "typescript/nextjs/payment/stripe-checkout",
+    "typescript/nextjs/payment/stripe-billing-schema"
+  ],
+  "author": "sfvibe-templates",
+  "createdAt": "2026-02-26",
+  "updatedAt": "2026-02-26"
+}

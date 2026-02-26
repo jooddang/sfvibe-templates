@@ -1,0 +1,33 @@
+{
+  "id": "typescript/nextjs/payment/stripe-pricing-table",
+  "name": "Stripe Pricing Table",
+  "description": "Ready-to-use pricing page with plan cards, monthly/yearly toggle, and Stripe checkout integration. Includes plan configuration and utility functions.",
+  "version": "1.0.0",
+  "category": "payment",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {},
+  "devDependencies": {},
+  "envVariables": [
+    { "name": "NEXT_PUBLIC_APP_URL", "description": "Your app URL", "required": true, "example": "https://yourapp.com" }
+  ],
+  "files": [
+    { "path": "src/config/pricing-config.ts", "description": "Plan definitions with price IDs", "isRequired": true },
+    { "path": "src/components/pricing-page.tsx", "description": "Pricing page with interval toggle", "isRequired": true },
+    { "path": "src/components/plan-card.tsx", "description": "Individual plan card component", "isRequired": true },
+    { "path": "src/lib/pricing-utils.ts", "description": "Price formatting and plan utilities", "isRequired": false }
+  ],
+  "tags": ["payment", "stripe", "pricing", "plans", "saas", "ui", "components"],
+  "usage": {
+    "installation": "No additional dependencies required",
+    "configuration": "1. Update pricing-config.ts with your Stripe price IDs\\n2. Customize plan features and pricing\\n3. Requires stripe-subscription template for checkout",
+    "example": "import { PricingPage } from '@/components/pricing-page'"
+  },
+  "relatedTemplates": [
+    "typescript/nextjs/payment/stripe-subscription",
+    "typescript/nextjs/payment/stripe-customer"
+  ],
+  "author": "sfvibe-templates",
+  "createdAt": "2026-02-26",
+  "updatedAt": "2026-02-26"
+}

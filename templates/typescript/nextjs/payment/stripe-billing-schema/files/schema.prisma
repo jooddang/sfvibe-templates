@@ -1,0 +1,57 @@
+// Stripe billing extension for Prisma schema
+// Add these fields to your existing User model and create these new models
+
+// Extend your User model with these fields:
+// model User {
+//   ...existing fields...
+//   stripeCustomerId     String?   @unique
+//   subscriptionId       String?   @unique
+//   subscriptionStatus   String?   // active, canceled, past_due, trialing
+//   priceId              String?
+//   currentPeriodEnd     DateTime?
+// }
+
+model Subscription {
+  id                   String    @id @default(cuid())
+  userId               String    @unique
+  stripeSubscriptionId String    @unique
+  stripePriceId        String
+  stripeCustomerId     String
+  status               String    // active, canceled, past_due, trialing, incomplete
+  currentPeriodStart   DateTime
+  currentPeriodEnd     DateTime
+  cancelAtPeriodEnd    Boolean   @default(false)
+  canceledAt           DateTime?
+  trialStart           DateTime?
+  trialEnd             DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  @@index([stripeCustomerId])
+  @@index([status])
+}
+
+model StripeEvent {
+  id               String   @id
+  type             String
+  processedAt      DateTime @default(now())
+  idempotencyKey   String?  @unique
+
+  @@index([type])
+}
+
+model Invoice {
+  id                 String   @id @default(cuid())
+  stripeInvoiceId    String   @unique
+  stripeCustomerId   String
+  subscriptionId     String?
+  amountPaid         Int
+  amountDue          Int
+  currency           String
+  status             String   // paid, open, void, uncollectible
+  invoiceUrl         String?
+  paidAt             DateTime?
+  createdAt          DateTime @default(now())
+
+  @@index([stripeCustomerId])
+}

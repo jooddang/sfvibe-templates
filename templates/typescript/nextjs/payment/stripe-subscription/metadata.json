@@ -1,35 +1,44 @@
 {
   "id": "typescript/nextjs/payment/stripe-subscription",
   "name": "Stripe Subscriptions",
-  "description": "Stripe subscription billing with customer portal. Handles recurring payments, plan changes, cancellations, and webhook events.",
-  "version": "1.0.0",
+  "description": "Production-ready Stripe subscription billing. Includes idempotent checkout, trial support, dunning/past_due handling, invoice webhooks, and customer portal.",
+  "version": "2.0.0",
   "category": "payment",
   "language": "typescript",
   "framework": "nextjs",
   "dependencies": {
     "stripe": "^17.0.0",
-    "@stripe/stripe-js": "^4.0.0"
+    "@stripe/stripe-js": "^4.0.0",
+    "@prisma/client": "^5.0.0"
   },
   "devDependencies": {},
   "envVariables": [
-    { "name": "STRIPE_SECRET_KEY", "description": "Stripe secret key", "required": true, "example": "sk_test_..." },
-    { "name": "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY", "description": "Stripe publishable key", "required": true, "example": "pk_test_..." },
-    { "name": "STRIPE_WEBHOOK_SECRET", "description": "Stripe webhook signing secret", "required": true, "example": "whsec_..." }
+    { "name": "STRIPE_SECRET_KEY", "description": "Stripe secret key (sk_...)", "required": true, "example": "sk_test_..." },
+    { "name": "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY", "description": "Stripe publishable key (pk_...)", "required": true, "example": "pk_test_..." },
+    { "name": "STRIPE_WEBHOOK_SECRET", "description": "Webhook signing secret (whsec_...)", "required": true, "example": "whsec_..." },
+    { "name": "NEXT_PUBLIC_APP_URL", "description": "Your app URL for redirects", "required": true, "example": "https://yourapp.com" },
+    { "name": "DATABASE_URL", "description": "PostgreSQL connection string", "required": true, "example": "postgresql://..." }
   ],
   "files": [
-    { "path": "src/lib/stripe.ts", "description": "Stripe client", "isRequired": true },
-    { "path": "src/app/api/subscription/create/route.ts", "description": "Create subscription checkout", "isRequired": true },
-    { "path": "src/app/api/subscription/portal/route.ts", "description": "Customer portal link", "isRequired": true },
+    { "path": "src/lib/stripe.ts", "description": "Stripe client with idempotency helper", "isRequired": true },
+    { "path": "src/app/api/subscription/create/route.ts", "description": "Create subscription with trial support", "isRequired": true },
+    { "path": "src/app/api/subscription/portal/route.ts", "description": "Customer portal session", "isRequired": true },
     { "path": "src/app/api/webhooks/stripe/route.ts", "description": "Subscription webhook handler", "isRequired": true }
   ],
-  "tags": ["payment", "stripe", "subscription", "recurring", "saas", "billing"],
+  "tags": ["payment", "stripe", "subscription", "recurring", "saas", "billing", "trial", "dunning"],
   "usage": {
-    "installation": "pnpm add stripe @stripe/stripe-js",
-    "configuration": "1. Create subscription products/prices in Stripe Dashboard\\n2. Add API keys and webhook secret to .env\\n3. Configure Customer Portal in Stripe Dashboard",
-    "example": "const response = await fetch('/api/subscription/create', { method: 'POST', body: JSON.stringify({ priceId }) })"
+    "installation": "pnpm add stripe @stripe/stripe-js @prisma/client",
+    "configuration": "1. Create products/prices in Stripe Dashboard\\n2. Add env vars to .env.local\\n3. Ensure User model has stripeCustomerId, subscriptionStatus fields",
+    "example": "await fetch('/api/subscription/create', { method: 'POST', body: JSON.stringify({ priceId, trialDays: 14 }) })"
   },
-  "relatedTemplates": ["typescript/nextjs/payment/stripe-checkout"],
+  "relatedTemplates": [
+    "typescript/nextjs/payment/stripe-webhook-handler",
+    "typescript/nextjs/payment/stripe-checkout",
+    "typescript/nextjs/payment/stripe-billing-schema",
+    "typescript/nextjs/payment/stripe-pricing-table",
+    "typescript/nextjs/payment/stripe-customer"
+  ],
   "author": "sfvibe-templates",
   "createdAt": "2025-01-28",
-  "updatedAt": "2025-01-28"
+  "updatedAt": "2026-02-26"
 }

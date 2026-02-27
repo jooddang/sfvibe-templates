@@ -1,0 +1,37 @@
+{
+  "id": "typescript/nextjs/payment/stripe-webhook-handler",
+  "name": "Stripe Webhook Handler",
+  "description": "Production-grade Stripe webhook handler with idempotent event processing. Typed handler factory pattern with built-in duplicate event detection.",
+  "version": "1.0.0",
+  "category": "payment",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "stripe": "^17.0.0"
+  },
+  "devDependencies": {},
+  "envVariables": [
+    { "name": "STRIPE_SECRET_KEY", "description": "Stripe secret key (sk_...)", "required": true, "example": "sk_test_..." },
+    { "name": "STRIPE_WEBHOOK_SECRET", "description": "Webhook signing secret (whsec_...)", "required": true, "example": "whsec_..." }
+  ],
+  "files": [
+    { "path": "src/lib/webhook-types.ts", "description": "TypeScript types for webhook handlers", "isRequired": true },
+    { "path": "src/lib/webhook-handler.ts", "description": "Webhook handler factory with idempotency", "isRequired": true },
+    { "path": "src/lib/webhook-events.ts", "description": "Default event handler implementations", "isRequired": true },
+    { "path": "src/app/api/webhooks/stripe/route.ts", "description": "Next.js API route for webhooks", "isRequired": true }
+  ],
+  "tags": ["payment", "stripe", "webhook", "events", "idempotency", "production"],
+  "usage": {
+    "installation": "pnpm add stripe",
+    "configuration": "1. Set up webhook endpoint in Stripe Dashboard\\n2. Add STRIPE_WEBHOOK_SECRET to .env\\n3. Requires stripe-billing-schema for idempotency",
+    "example": "const handler = createWebhookHandler({ 'checkout.session.completed': async (session) => { ... } })"
+  },
+  "relatedTemplates": [
+    "typescript/nextjs/payment/stripe-checkout",
+    "typescript/nextjs/payment/stripe-subscription",
+    "typescript/nextjs/payment/stripe-billing-schema"
+  ],
+  "author": "sfvibe-templates",
+  "createdAt": "2026-02-26",
+  "updatedAt": "2026-02-26"
+}

@@ -1,8 +1,8 @@
 {
   "id": "typescript/nextjs/payment/stripe-checkout",
   "name": "Stripe Checkout",
-  "description": "Stripe Checkout integration for one-time payments. Includes checkout session creation, webhook handling, and success/cancel pages.",
-  "version": "1.0.0",
+  "description": "Production-ready Stripe Checkout for one-time payments. Includes idempotent checkout sessions, webhook handling with expired/failed events, and error-handling UI.",
+  "version": "2.0.0",
   "category": "payment",
   "language": "typescript",
   "framework": "nextjs",
@@ -12,24 +12,29 @@
   },
   "devDependencies": {},
   "envVariables": [
-    { "name": "STRIPE_SECRET_KEY", "description": "Stripe secret key (starts with sk_)", "required": true, "example": "sk_test_..." },
-    { "name": "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY", "description": "Stripe publishable key (starts with pk_)", "required": true, "example": "pk_test_..." },
-    { "name": "STRIPE_WEBHOOK_SECRET", "description": "Stripe webhook signing secret (starts with whsec_)", "required": true, "example": "whsec_..." }
+    { "name": "STRIPE_SECRET_KEY", "description": "Stripe secret key (sk_...)", "required": true, "example": "sk_test_..." },
+    { "name": "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY", "description": "Stripe publishable key (pk_...)", "required": true, "example": "pk_test_..." },
+    { "name": "STRIPE_WEBHOOK_SECRET", "description": "Webhook signing secret (whsec_...)", "required": true, "example": "whsec_..." },
+    { "name": "NEXT_PUBLIC_APP_URL", "description": "Your app URL for success/cancel redirects", "required": true, "example": "https://yourapp.com" }
   ],
   "files": [
-    { "path": "src/lib/stripe.ts", "description": "Stripe client configuration", "isRequired": true },
+    { "path": "src/lib/stripe.ts", "description": "Stripe client with idempotency helper", "isRequired": true },
     { "path": "src/app/api/checkout/route.ts", "description": "Checkout session API", "isRequired": true },
-    { "path": "src/app/api/webhooks/stripe/route.ts", "description": "Stripe webhook handler", "isRequired": true },
-    { "path": "src/components/checkout-button.tsx", "description": "Checkout button component", "isRequired": false }
+    { "path": "src/app/api/webhooks/stripe/route.ts", "description": "Webhook handler", "isRequired": true },
+    { "path": "src/components/checkout-button.tsx", "description": "Checkout button with error state", "isRequired": false }
   ],
-  "tags": ["payment", "stripe", "checkout", "one-time", "e-commerce"],
+  "tags": ["payment", "stripe", "checkout", "one-time", "e-commerce", "idempotent"],
   "usage": {
     "installation": "pnpm add stripe @stripe/stripe-js",
-    "configuration": "1. Get API keys from Stripe Dashboard\\n2. Add STRIPE_SECRET_KEY, NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to .env\\n3. Set up webhook endpoint and add STRIPE_WEBHOOK_SECRET",
-    "example": "const response = await fetch('/api/checkout', { method: 'POST', body: JSON.stringify({ priceId }) })"
+    "configuration": "1. Get API keys from Stripe Dashboard\\n2. Add env vars to .env.local\\n3. Set up webhook endpoint in Stripe Dashboard",
+    "example": "await fetch('/api/checkout', { method: 'POST', body: JSON.stringify({ priceId, customerEmail }) })"
   },
-  "relatedTemplates": ["typescript/nextjs/payment/stripe-subscription"],
+  "relatedTemplates": [
+    "typescript/nextjs/payment/stripe-webhook-handler",
+    "typescript/nextjs/payment/stripe-subscription",
+    "typescript/nextjs/payment/stripe-billing-schema"
+  ],
   "author": "sfvibe-templates",
   "createdAt": "2025-01-28",
-  "updatedAt": "2025-01-28"
+  "updatedAt": "2026-02-26"
 }

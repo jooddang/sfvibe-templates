@@ -1,0 +1,37 @@
+{
+  "id": "typescript/nextjs/payment/stripe-billing-schema",
+  "name": "Stripe Billing Schema",
+  "description": "Prisma schema extension for Stripe billing. Adds Subscription, StripeEvent (idempotency), and Invoice models. Includes DB helpers for webhook event processing.",
+  "version": "1.0.0",
+  "category": "payment",
+  "language": "typescript",
+  "framework": "nextjs",
+  "dependencies": {
+    "@prisma/client": "^5.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.0.0"
+  },
+  "envVariables": [
+    { "name": "DATABASE_URL", "description": "PostgreSQL connection string", "required": true, "example": "postgresql://user:pass@localhost:5432/db" }
+  ],
+  "files": [
+    { "path": "prisma/schema.prisma", "description": "Stripe billing models to add to your schema", "isRequired": true },
+    { "path": "src/lib/stripe-db.ts", "description": "Database helpers for Stripe webhooks", "isRequired": true }
+  ],
+  "tags": ["payment", "stripe", "prisma", "database", "schema", "subscription", "billing"],
+  "usage": {
+    "installation": "pnpm add @prisma/client && pnpm add -D prisma",
+    "configuration": "1. Copy Subscription, StripeEvent, Invoice models to your schema.prisma\\n2. Add User fields from comments\\n3. Run prisma migrate dev",
+    "example": "import { isEventProcessed, markEventProcessed, upsertSubscription } from '@/lib/stripe-db'"
+  },
+  "relatedTemplates": [
+    "typescript/nextjs/payment/stripe-webhook-handler",
+    "typescript/nextjs/payment/stripe-subscription",
+    "typescript/nextjs/payment/stripe-customer",
+    "typescript/nextjs/database/prisma-setup"
+  ],
+  "author": "sfvibe-templates",
+  "createdAt": "2026-02-26",
+  "updatedAt": "2026-02-26"
+}

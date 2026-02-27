@@ -1,16 +1,18 @@
 name: Publish to npm
 
 on:
-  release:
-    types: [published]
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   publish:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    concurrency:
+      group: publish-main
     permissions:
-      contents: read
+      contents: write
       id-token: write
     environment: npmjs
 
@@ -18,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -28,52 +30,44 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Check if version changed
-        id: version-check
-        run: |
-          # Get current version from package.json
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
-
-          # Check if this version already exists on npm
-          if npm view sfvibe-templates-mcp@$CURRENT_VERSION version 2>/dev/null; then
-            echo "Version $CURRENT_VERSION already published"
-            echo "should_publish=false" >> $GITHUB_OUTPUT
-          else
-            echo "Version $CURRENT_VERSION not yet published"
-            echo "should_publish=true" >> $GITHUB_OUTPUT
-          fi
-
       - name: Install dependencies
-        if: steps.version-check.outputs.should_publish == 'true'
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Type check
-        if: steps.version-check.outputs.should_publish == 'true'
         run: pnpm typecheck
 
       - name: Run tests
-        if: steps.version-check.outputs.should_publish == 'true'
         run: pnpm test
 
       - name: Build
-        if: steps.version-check.outputs.should_publish == 'true'
         run: pnpm build
 
       - name: Validate templates
-        if: steps.version-check.outputs.should_publish == 'true'
         run: pnpm validate-templates
 
+      - name: Bump package version
+        id: version-bump
+        run: |
+          NEW_TAG=$(npm version patch --no-git-tag-version)
+          echo "version=${NEW_TAG#v}" >> "$GITHUB_OUTPUT"
+          echo "tag=$NEW_TAG" >> "$GITHUB_OUTPUT"
+          echo "Released version: $NEW_TAG"
+
       - name: Update npm for OIDC support
-        if: steps.version-check.outputs.should_publish == 'true'
         run: npm install -g npm@latest
 
       - name: Publish to npm (OIDC Trusted Publishing)
-        if: steps.version-check.outputs.should_publish == 'true'
         run: npm publish --access public --provenance
 
-      - name: Skip publish (version exists)
-        if: steps.version-check.outputs.should_publish == 'false'
-        run: echo "Skipping publish - version ${{ steps.version-check.outputs.current_version }} already exists on npm"
+      - name: Commit and push release version
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "chore(release): ${{ steps.version-bump.outputs.tag }} [skip ci]"
+          git tag "${{ steps.version-bump.outputs.tag }}"
+          git push origin HEAD:main
+          git push origin "${{ steps.version-bump.outputs.tag }}"

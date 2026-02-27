@@ -180,6 +180,21 @@ We welcome contributions! Help us build the best collection of templates.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding templates.
 
+## CI/CD Release Pipeline
+
+When code is pushed to the `main` branch, GitHub Actions automatically runs npm release in this order:
+
+1. `pnpm install --frozen-lockfile`
+2. `typecheck`, `test`, `build`, `validate-templates`
+3. Automatically bump patch version with `npm version patch --no-git-tag-version`
+4. `npm publish --access public --provenance`
+5. Commit the updated `package.json` and push a `vX.Y.Z` tag
+
+Required setup:
+
+- Connect npm package `sfvibe-templates-mcp` to this GitHub repository as a Trusted Publisher
+- Allow `contents: write` permission for GitHub Actions `GITHUB_TOKEN` (already configured in workflow)
+
 ## License
 
 MIT - see [LICENSE](LICENSE) for details.
